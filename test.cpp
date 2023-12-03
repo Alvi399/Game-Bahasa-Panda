@@ -1,12 +1,15 @@
 #include <iostream>
 using namespace std;
-int main(int argc, char const *argv[])
-{    
+void ruleGame() {
     cout << "Hello wolrd" << endl;
     cout << "Selamat datang di tebak bahasa panda" << endl;
     cout << "PERATURAN: " << endl;
     cout << "1. Dilarang mencontek" << endl;
     cout << "2. Dilarang mencontek" << endl;
     cout << "3. Dilarang mencontek" << endl;
+}
+int main(int argc, char const *argv[])
+{    
+    ruleGame();
     
 }
