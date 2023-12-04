@@ -22,7 +22,7 @@ int  menuGame() {
         cout << "2. Cek Papan Skor\n";
         cout << "3. Credit\n";
         cout << "4. Aturan Main";
-        cout << "Plih menu yang ada: \n";
+        cout << "Plih menu yang ada: ";
         cin >> opsi;
         switch (opsi)
         {
