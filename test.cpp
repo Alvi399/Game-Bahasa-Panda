@@ -8,6 +8,9 @@ void ruleGame() {
     cout << "2. Dilarang mencontek" << endl;
     cout << "3. Dilarang mencontek" << endl;
 }
+void levelOne() {
+    
+}
 int main(int argc, char const *argv[])
 {    
     ruleGame();
