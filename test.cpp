@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
-void leaderBoard() {
+void playGame() {
+}
+void cekLeaderBoard() {
 }
 void credit () {
     cout << "Dibuat oleh : \n 1. Alvi \n";
@@ -59,5 +61,21 @@ int main(int argc, char const *argv[])
     cin >> nama_user;
     int opsi = menuGame();
     cout << opsi;
-    
+    switch (opsi)
+    {
+    case 1:
+        playGame();
+        break;
+    case 2:
+        cekLeaderBoard();
+        break;
+    case 3:
+        credit();
+        break;
+    case 4:
+        ruleGame();
+        break;
+    default:
+        break;
+    }    
 }
