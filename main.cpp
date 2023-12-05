@@ -1,8 +1,18 @@
 #include <iostream>
+#include <fstream>
+
 using namespace std;
 void playGame() {
+    
 }
 void cekLeaderBoard() {
+    fstream baca;
+    baca.open("/database/data_leaderboard.txt");
+    while (!baca.eof())
+    {
+        
+    }
+    
 }
 void credit () {
     cout << "Dibuat oleh : \n 1. Alvi \n";
@@ -14,6 +24,10 @@ void ruleGame() {
     cout << "2. Dilarang mencontek" << endl;
     cout << "3. Dilarang mencontek" << endl;
 }
+void exit() {
+    cout << "Terima kasih sudah memainkan game ini" << endl;
+}
+
 int  menuGame() {
     int opsi;
     bool kebenaran = false;
@@ -24,6 +38,7 @@ int  menuGame() {
         cout << "2. Cek Papan Skor\n";
         cout << "3. Credit\n";
         cout << "4. Aturan Main";
+        cout << "5. Keluar";
         cout << "Plih menu yang ada: ";
         cin >> opsi;
         switch (opsi)
@@ -42,6 +57,11 @@ int  menuGame() {
             break;
         case 4:
             return opsi;
+            kebenaran = true;
+            break;
+        case 5:
+            return opsi;
+            kebenaran = true;
             break;
         default:
             cout << "Pilihan menu tidak tersedia\n";
@@ -61,6 +81,7 @@ int main(int argc, char const *argv[])
     cin >> nama_user;
     int opsi = menuGame();
     cout << opsi;
+
     switch (opsi)
     {
     case 1:
@@ -74,6 +95,9 @@ int main(int argc, char const *argv[])
         break;
     case 4:
         ruleGame();
+        break;
+    case 5:
+        exit();
         break;
     default:
         break;
