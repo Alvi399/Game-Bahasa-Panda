@@ -1,8 +1,10 @@
+//
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <algorithm>
+
 
 using namespace std;
 struct User {
@@ -11,6 +13,13 @@ struct User {
 };
 bool compareScores(const User &a, const User &b) {
     return a.score > b.score; // Mengurutkan secara menurun (dari skor tertinggi ke terendah)
+}
+string trim(const std::string& str) {
+    size_t first = str.find_first_not_of(' '); 
+    size_t last = str.find_last_not_of(' ');   
+    if (first == std::string::npos || last == std::string::npos)
+        return "";
+    return str.substr(first, last - first + 1);
 }
 
 //levelOne
@@ -154,12 +163,13 @@ bool levelTwoGame(int *heart, int *skor, int *level) {
         bool soal1 = true,soal2 = true,soal3 = true;
         while (soal1 == true)
         {
-            system("cls");
+            // system("cls");
             cout << "Nyawa: " << heart_local <<"     Soal: " << progress_soal << "     Level: "<< level_local <<"     Skor: "<< skor_local<<endl;
             string jawaban;
+            string jawaban_benar = bankSoal[0][1]; 
             cout << bankSoal[0][0] << ": ";
             cin >> jawaban;
-            if (jawaban == bankSoal[0][1])
+            if (trim(jawaban) == trim(jawaban_benar))
             {
                 skor_local += 50;
                 soal1 = false;
@@ -181,9 +191,10 @@ bool levelTwoGame(int *heart, int *skor, int *level) {
             system("cls");
             cout << "Nyawa: " << heart_local <<"     Soal: " << progress_soal << "     Level: "<< level_local <<"     Skor: "<< skor_local<<endl;
             string jawaban;
+            string jawaban_benar = bankSoal[1][1];
             cout << bankSoal[1][0] << ": ";
             cin >> jawaban;
-            if (jawaban == bankSoal[1][1])
+            if (trim(jawaban) == trim(jawaban_benar))
             {
                 skor_local += 50;
                 soal2 = false;
@@ -206,9 +217,10 @@ bool levelTwoGame(int *heart, int *skor, int *level) {
             system("cls");
             cout << "Nyawa: " << heart_local <<"     Soal: " << progress_soal << "     Level: "<< level_local <<"     Skor: "<< skor_local<<endl;
             string jawaban;
+            string jawaban_benar = bankSoal[2][1];
             cout << bankSoal[2][0] << ": ";
             cin >> jawaban;
-            if (jawaban == bankSoal[2][1])
+            if (trim(jawaban) == trim(jawaban_benar))
             {
                 skor_local += 50;
                 soal3 = false;
