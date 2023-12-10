@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <ctime>
+#include <conio.h>
 
 using namespace std;
 struct User {
@@ -765,31 +766,44 @@ void playGame(int *skormain) {
                     {
                         system("cls");
                         cout << "Congrats You Winner This Game\n";
-                        cout << "Your Score Is " << skor;
+                        cout << "Your Score Is " << skor << endl;
                     } else {
                         cout << "Your`e Failed\n";
-                        cout << "your`e score is " << skor;    
+                        cout << "your`e score is " << skor << endl;    
                     }
                 } else {
                     cout << "Your`e Failed\n";
-                    cout << "your score is " << skor;
+                    cout << "your score is " << skor << endl;
                 }
             } else {
                 cout << "Your`e Failed\n";
-                cout << "your score is " << skor;
+                cout << "your score is " << skor << endl;
             }
         } else {
             cout << "Your`e Failed\n";
-            cout << "your score is " << skor;
+            cout << "your score is " << skor << endl;
         }
     } else {
         cout << "Your`e Failed\n";
-        cout << "your score is " << skor;
+        cout << "your score is " << skor << endl;
     }
     *skormain = skor;
+    if (skor >= 100 && skor <= 250)
+    {
+        cout << "Achievement: Cinta Monyet\n";
+    } else if (skor > 250 && skor <= 500)
+    {
+        cout << "Achievement: Bertepuk Sebelah Tangan\n";
+    } else if (skor > 500)
+    {
+        cout <<"Achievement: Cinta Sejati\n";
+        cout <<"Telah Sampai di Pelaminan\n";
+    } else {
+        cout << "Belajar yang rajin ya sayang\n";
+    }
+    
 }
 void cekLeaderBoard(string nama = "a",int skor = 0, bool input = false) {
-    system("cls");
     if (input == true)
     {
         ofstream tulis("database/data_leaderboard.txt", ios::app);    
@@ -852,6 +866,24 @@ void ruleGame() {
     cout << "|3. ketik '2' untuk hapus dosa anda                   |\n";
     cout << "|4. Dilarang emosi:)                                  |\n";
     cout << "=======================================================\n";
+    char key;
+    do {
+        key = getch();  
+        if (key == '1') {
+            system("cls");
+            cout << "Achievement: Cinta Hasil Orang Dalam\n";
+            exit(0);
+            break;
+        } else if (key = '2') {
+            const char* videoURL =  "https://www.youtube.com/live/Y8maXPWckyQ?si=AY8GhTbsuPQkr3vN";
+            string command = "start " + std::string(videoURL);
+            system(command.c_str());
+        } else if (key = '3') {
+            const char* videoURL =  "https://www.youtube.com/shorts/5wbrtagi08U";
+            string command = "start " + std::string(videoURL);
+            system(command.c_str());
+        }
+    } while (true);
 }
 
 void exit() {
@@ -932,7 +964,8 @@ int main(int argc, char const *argv[])
     {
     case 1:
         playGame(&skor_pengguna);
-        system("cls");
+        cout << endl << endl << endl;
+        cout << "Data Leaderboard Tahunan\n";
         cekLeaderBoard(nama_penggunna,skor_pengguna,true);
         break;
     case 2:
