@@ -369,7 +369,7 @@ bool levelThreeGame(int *heart, int *skor, int *level) {
         bool soal1 = true,soal2 = true,soal3 = true;
         while (soal1 == true)
         {
-            // system("cls");
+            system("cls");
             cout << "Nyawa: " << heart_local <<"     Soal: " << progress_soal << "     Level: "<< level_local <<"     Skor: "<< skor_local<<endl;
             string jawaban;
             string jawaban_benar = bankSoal[0][10]; 
@@ -473,6 +473,137 @@ bool levelThreeGame(int *heart, int *skor, int *level) {
     *level = level_local;
     return berhasil;
 }
+//levelThree
+bool levelFourGame(int *heart, int *skor, int *level) {
+    int progress_soal = 1,heart_local = *heart, skor_local = *skor, level_local = *level;
+    bool berhasil;
+    //input soal ke array
+    ifstream baca ("database/data_soal4.txt");
+    string bankSoal [3][7];
+    string soal;
+    int index = 0, line = 0,index2 = 0;
+    while (getline(baca,soal))
+    {
+        line++;
+        if (line%7 == 0)
+        {   bankSoal[index][index2] = soal;
+            index2 = 0;
+            index++;
+        } else {
+            bankSoal[index][index2] = soal;
+            index2++;
+        }
+    }
+    //pengguna berinteraksi dengan program
+    while (heart_local > 0)
+    {
+        bool soal1 = true,soal2 = true,soal3 = true;
+        while (soal1 == true)
+        {
+            system("cls");
+            cout << "Nyawa: " << heart_local <<"     Soal: " << progress_soal << "     Level: "<< level_local <<"     Skor: "<< skor_local<<endl;
+            string jawaban;
+            string jawaban_benar = bankSoal[0][6]; 
+            for (int i = 0; i < 6; i++)
+            {
+                cout << bankSoal[0][i] << endl;
+            }
+            cout << "Jawab: ";
+            cin >> jawaban;
+            if (trim(jawaban) == trim(jawaban_benar))
+            {
+                skor_local += 50;
+                soal1 = false;
+                progress_soal++;
+                break;
+            } else {
+                heart_local--;
+            } 
+            if (heart_local  < 1)
+            {
+                soal1 = false;
+                soal2 = false;
+                soal3 = false;
+                break;
+            }
+        }
+        while (soal2 == true)
+        {
+            system("cls");
+            cout << "Nyawa: " << heart_local <<"     Soal: " << progress_soal << "     Level: "<< level_local <<"     Skor: "<< skor_local<<endl;
+            string jawaban;
+            string jawaban_benar = bankSoal[1][6];
+            for (int i = 0; i < 6; i++)
+            {
+                cout << bankSoal[1][i] << endl;
+            }
+            cout << "Jawab: ";
+            cin >> jawaban;
+            if (trim(jawaban) == trim(jawaban_benar))
+            {
+                skor_local += 50;
+                soal2 = false;
+                progress_soal++;
+                break;
+            } else {
+                heart_local--;
+            }
+            if (heart_local  < 1)
+            {
+                soal1 = false;
+                soal2 = false;
+                soal3 = false;
+                break;
+            }
+            
+        }
+        while (soal3 == true)
+        {
+            system("cls");
+            cout << "Nyawa: " << heart_local <<"     Soal: " << progress_soal << "     Level: "<< level_local <<"     Skor: "<< skor_local<<endl;
+            string jawaban;
+            string jawaban_benar = bankSoal[2][6];
+            for (int i = 0; i < 6; i++)
+            {
+                cout << bankSoal[2][i] << endl;
+            }
+            cout << "Jawab: ";
+            cin >> jawaban;
+            if (trim(jawaban) == trim(jawaban_benar))
+            {
+                skor_local += 50;
+                soal3 = false;
+                progress_soal++;
+                break;
+            } else {
+                heart_local--;
+            } 
+            if (heart_local < 1)
+            {
+                soal1 = false;
+                soal2 = false;
+                soal3 = false;
+                break;
+            }
+        }
+        if (heart_local > 0)
+        {
+            if (heart_local < 3)
+            {
+                heart_local++;
+            }
+            level_local++;
+            berhasil = true;
+            break;
+        } else {
+            berhasil = false;
+        }
+    }
+    *heart = heart_local;
+    *skor = skor_local;
+    *level = level_local;
+    return berhasil;
+}
 
 void playGame() {
     int skor = 0;
@@ -486,7 +617,13 @@ void playGame() {
             bool main3 = levelThreeGame(&hati,&skor,&level);
             if (main3 == true)
             {
-                
+                bool main4 = levelFourGame(&hati,&skor,&level);
+                if (main4 == true)
+                {
+                    
+                } else {
+
+                }
             } else {
                 cout << "Your Failed\n";
                 cout << "your skor is " << skor;

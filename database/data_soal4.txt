@@ -1,0 +1,21 @@
+Jika JIPRO = 68; ADISI = 78; dan INTERASI = 95, maka DELIRIUM dituliskan dalam Bahasa kode yang sama adalah
+a. 89
+b. 91
+c. 101
+d. 107
+e. 115
+b
+Jika KREATIF = 74; PESANAN = 82; dan FOTOGRAFI = 96, maka bagaimana nilai yang terkait dengan kata PROGRAM dituliskan dalam bahasa kode yang sama?
+a. 60
+b. 68
+c. 74
+d. 81
+e. 92
+c
+Jika PENDIDIKAN = 88; KEMAJUAN = 92; dan PELAJARAN = 78, maka nilai yang terkait dengan kata KONSISTEN dituliskan dalam bahasa kode yang sama adalah?
+a. 76
+b. 80
+c. 85
+d. 92
+e. 98
+a
