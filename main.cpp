@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-
+#include <ctime>
 
 using namespace std;
 struct User {
@@ -473,7 +473,7 @@ bool levelThreeGame(int *heart, int *skor, int *level) {
     *level = level_local;
     return berhasil;
 }
-//levelThree
+//levelFour
 bool levelFourGame(int *heart, int *skor, int *level) {
     int progress_soal = 1,heart_local = *heart, skor_local = *skor, level_local = *level;
     bool berhasil;
@@ -604,8 +604,148 @@ bool levelFourGame(int *heart, int *skor, int *level) {
     *level = level_local;
     return berhasil;
 }
+//LevelFive
+bool levelFiveGame(int *heart, int *skor, int *level) {
+    int progress_soal = 1,heart_local = *heart, skor_local = *skor, level_local = *level;
+    bool berhasil;
+    //input soal ke array
+    ifstream baca ("database/data_soal5.txt");
+    string bankSoal [3][2];
+    string soal;
+    string alphabet[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    int index = 0, line = 0;
+    while (getline(baca,soal))
+    {
+        line++;
+        if (line%2 == 0)
+        {
+            bankSoal[index][1] = soal;
+            index++;
+        } else {
+            bankSoal[index][0] = soal;
+        }
+    }
+    //pengguna berinteraksi dengan program
+    while (heart_local > 0)
+    {
+        bool soal1 = true,soal2 = true,soal3 = true;
+        while (soal1 == true)
+        {
+            system("cls");
+            cout << "Nyawa: " << heart_local <<"     Soal: " << progress_soal << "     Level: "<< level_local <<"     Skor: "<< skor_local<<endl;
+            srand(static_cast<unsigned int>(std::time(nullptr)));
+            int random_number = rand() % 26 + 1; 
+            int panjang_soal = bankSoal[0][0].length();
+            int panjang_jawaban = bankSoal[0][1].length();
+            soal = creatAlogoritm(bankSoal[0][0],panjang_soal,random_number);
+            string jawaban;
+            string jawaban_benar = creatAlogoritm(bankSoal[0][1],panjang_jawaban,random_number);
+            cout << "Diketahui " << alphabet[random_number] << ": 1\n";
+            cout << soal << endl;
+            cout << "Jawab: ";
+            cin >> jawaban;
+            if (trim(jawaban) == trim(jawaban_benar))
+            {
+                skor_local += 50;
+                soal1 = false;
+                progress_soal++;
+                break;
+            } else {
+                heart_local--;
+            } 
+            if (heart_local  < 1)
+            {
+                soal1 = false;
+                soal2 = false;
+                soal3 = false;
+                break;
+            }
+        }
+        while (soal2 == true)
+        {
+            system("cls");
+            cout << "Nyawa: " << heart_local <<"     Soal: " << progress_soal << "     Level: "<< level_local <<"     Skor: "<< skor_local<<endl;
+            srand(static_cast<unsigned int>(std::time(nullptr)));
+            int random_number = rand() % 26 + 1; 
+            int panjang_soal = bankSoal[1][0].length();
+            int panjang_jawaban = bankSoal[1][1].length();
+            soal = creatAlogoritm(bankSoal[1][0],panjang_soal,random_number);
+            string jawaban;
+            string jawaban_benar = creatAlogoritm(bankSoal[1][1],panjang_jawaban,random_number);
+            cout << "Diketahui " << alphabet[random_number] << ": 1\n";
+            cout << soal << endl;
+            cout << "Jawab: ";
+            cin >> jawaban;
+            if (trim(jawaban) == trim(jawaban_benar))
+            {
+                skor_local += 50;
+                soal2 = false;
+                progress_soal++;
+                break;
+            } else {
+                heart_local--;
+            }
+            if (heart_local  < 1)
+            {
+                soal1 = false;
+                soal2 = false;
+                soal3 = false;
+                break;
+            }
+            
+        }
+        while (soal3 == true)
+        {
+            system("cls");
+            cout << "Nyawa: " << heart_local <<"     Soal: " << progress_soal << "     Level: "<< level_local <<"     Skor: "<< skor_local<<endl;
+            srand(static_cast<unsigned int>(std::time(nullptr)));
+            int random_number = rand() % 26 + 1; 
+            int panjang_soal = bankSoal[2][0].length();
+            int panjang_jawaban = bankSoal[2][1].length();
+            soal = creatAlogoritm(bankSoal[2][0],panjang_soal,random_number);
+            string jawaban;
+            string jawaban_benar = creatAlogoritm(bankSoal[2][1],panjang_jawaban,random_number);
+            cout << "Diketahui " << alphabet[random_number] << ": 1\n";
+            cout << soal << endl;
+            cout << "Jawab: ";
+            cin >> jawaban;
+            if (trim(jawaban) == trim(jawaban_benar))
+            {
+                skor_local += 50;
+                soal3 = false;
+                progress_soal++;
+                break;
+            } else {
+                heart_local--;
+            } 
+            if (heart_local < 1)
+            {
+                soal1 = false;
+                soal2 = false;
+                soal3 = false;
+                break;
+            }
+        }
+        if (heart_local > 0)
+        {
+            if (heart_local < 3)
+            {
+                heart_local++;
+            }
+            level_local++;
+            berhasil = true;
+            break;
+        } else {
+            berhasil = false;
+        }
+    }
+    *heart = heart_local;
+    *skor = skor_local;
+    *level = level_local;
+    return berhasil;
+}
 
-void playGame() {
+void playGame(int *skormain) {
     int skor = 0;
     int hati = 3;
     int level = 1;
@@ -620,24 +760,36 @@ void playGame() {
                 bool main4 = levelFourGame(&hati,&skor,&level);
                 if (main4 == true)
                 {
-                    
+                    bool main5 = levelFiveGame(&hati,&skor,&level);
+                    if (main5 = true)
+                    {
+                        system("cls");
+                        cout << "Congrats You Winner This Game\n";
+                        cout << "Your Score Is " << skor;
+                    } else {
+                        cout << "Your`e Failed\n";
+                        cout << "your`e score is " << skor;    
+                    }
                 } else {
-
+                    cout << "Your`e Failed\n";
+                    cout << "your score is " << skor;
                 }
             } else {
-                cout << "Your Failed\n";
-                cout << "your skor is " << skor;
+                cout << "Your`e Failed\n";
+                cout << "your score is " << skor;
             }
         } else {
-            cout << "Your Failed\n";
-            cout << "your skor is " << skor;
+            cout << "Your`e Failed\n";
+            cout << "your score is " << skor;
         }
     } else {
-        cout << "Your Failed\n";
-        cout << "your skor is " << skor;
+        cout << "Your`e Failed\n";
+        cout << "your score is " << skor;
     }
-    }
+    *skormain = skor;
+}
 void cekLeaderBoard(string nama = "a",int skor = 0, bool input = false) {
+    system("cls");
     if (input == true)
     {
         ofstream tulis("database/data_leaderboard.txt", ios::app);    
@@ -674,23 +826,36 @@ void cekLeaderBoard(string nama = "a",int skor = 0, bool input = false) {
     sort(users.begin(), users.end(), compareScores);
     // Menampilkan data dari vektor setelah diurutkan
     for (const User &user : users) {
-        cout << user.name << " : " << user.score << endl;
+        cout << user.name << " | " << user.score << endl;
     }
 }
 
 void credit () {
-    cout << "Dibuat oleh : \n 1. Alvi \n";
+    system("cls");
+    cout << "======================================================\n";
+    cout << "|              KENALAN GIH SAMA KITA:                |\n";
+    cout << "======================================================\n";
+    cout << "|1. Muhammad Alvi Kirana Zulfan Nazal (23051204339)  |\n";
+    cout << "|2. Erkhamuddin abadan (23051204333)                 |\n";
+    cout << "|3. Najwa Vaida Isnani (23051204355)                 |\n";
+    cout << "======================================================\n";
 }
 
 void ruleGame() {
-    cout << "Selamat datang di tebak bahasa panda" << endl;
-    cout << "PERATURAN: " << endl;
-    cout << "1. Dilarang mencontek" << endl;
-    cout << "2. Dilarang mencontek" << endl;
-    cout << "3. Dilarang mencontek" << endl;
+    system("cls");
+    cout << "=======================================================\n";
+    cout << "|           PERATURAN YANG HARUS DIPATUHI              \n";
+    cout << "|             OLEH SEGENAP JIWA RAGAKU                 \n";
+    cout << "=======================================================\n";
+    cout << "|1. Dilarang BAPER                                    |\n";
+    cout << "|2. Ketik '1' jika menyerah                           |\n";
+    cout << "|3. ketik '2' untuk hapus dosa anda                   |\n";
+    cout << "|4. Dilarang emosi:)                                  |\n";
+    cout << "=======================================================\n";
 }
 
 void exit() {
+    system("cls");
     cout << "Terima kasih sudah memainkan game ini" << endl;
 }
 
@@ -700,11 +865,16 @@ int  menuGame() {
     while (kebenaran == false)
     {
         system("cls");
-        cout << "1. Main\n";
-        cout << "2. Cek Papan Skor\n";
-        cout << "3. Credit\n";
-        cout << "4. Aturan Main\n";
-        cout << "5. Keluar\n";
+        cout << "=====================================\n";
+        cout << "|          SELAMAT PILIH MENU        |\n";
+        cout << "|             DIBAWAH INI            |\n";
+        cout << "=====================================\n";
+        cout << "|1. Main Game                        |\n";
+        cout << "|2. Cek Papan Skor                   |\n";
+        cout << "|3. Credit                           |\n";
+        cout << "|4. Aturan Main                      |\n";
+        cout << "|5. Keluar                           |\n";
+        cout << "=====================================\n";
         cout << "Plih menu yang ada: ";
         cin >> opsi;
         switch (opsi)
@@ -742,10 +912,18 @@ int  menuGame() {
 int main(int argc, char const *argv[])
 {
     //definisikan user
+    system("cls");
     User pengguna;    
-    cout << "Masukan nama pengguna: ";
-    cin >> pengguna.name;
-    pengguna.score = 0;
+    cout << "=====================================\n";
+    cout << "|       SELAMAT DATANG DI GAME      |\n";
+    cout << "|         TEBAK BAHASA PANDA        |\n";
+    cout << "=====================================\n";
+    cout << "|     Tak kenal maka tak sayang     |\n";
+    cout << "=====================================\n";
+    cout << "     Masukan nama yang ku sayang: ";
+    int skor_pengguna = pengguna.score = 0;
+    string nama_penggunna = pengguna.name;
+    getline(cin,nama_penggunna);
 
     //user brinteraksi dengan opsi dalm game
     int opsi = menuGame();
@@ -753,7 +931,9 @@ int main(int argc, char const *argv[])
     switch (opsi)
     {
     case 1:
-        playGame();
+        playGame(&skor_pengguna);
+        system("cls");
+        cekLeaderBoard(nama_penggunna,skor_pengguna,true);
         break;
     case 2:
         cekLeaderBoard();
