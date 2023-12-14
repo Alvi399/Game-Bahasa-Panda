@@ -3,5 +3,7 @@ adalah sebuah game dimana kita harus menebak cara untuk mendapatkan jawaban
 yang benar dari beberapa opsi jawaban
 # Feature
 -Hati
-adalah sebuah fitur dimana ki
+-Skor
+-Papan Peringkat
 # How to Play
+-Klik" aja kak
