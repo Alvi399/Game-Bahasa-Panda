@@ -34,7 +34,7 @@ string creatAlogoritm(string soal,int panjang,int random_number) {
         kataSoal[i] = soal[i];
     }
     //satge 1
-    for (int i = (random_number - 1); i < 26; i++)
+    for (int i = (random_number); i < 26; i++)
     {
         newAlphabet[indexNewAlphabet] = alphabet[i];
         indexNewAlphabet++;
@@ -878,11 +878,7 @@ void ruleGame() {
             const char* videoURL =  "https://www.youtube.com/live/Y8maXPWckyQ?si=AY8GhTbsuPQkr3vN";
             string command = "start " + std::string(videoURL);
             system(command.c_str());
-        } else if (key = '3') {
-            const char* videoURL =  "https://www.youtube.com/shorts/5wbrtagi08U";
-            string command = "start " + std::string(videoURL);
-            system(command.c_str());
-        }
+        } 
     } while (true);
 }
 
