@@ -124,10 +124,10 @@ bool levelOneGame(int *heart, int *skor, int *level) {
         line++;
         if (line%2 == 0)
         {
-            bankSoal[index][1] = soal;
+            bankSoal[index][1] = soal; //soal
             index++;
         } else {
-            bankSoal[index][0] = soal;
+            bankSoal[index][0] = soal; //jawaban
         }
     }
     //pengguna berinteraksi dengan program

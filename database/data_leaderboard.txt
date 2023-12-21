@@ -14,3 +14,7 @@ ayu
 100
 jkjk
 350
+alvi2
+150
+Alvi
+750
